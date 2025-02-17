@@ -1,43 +1,49 @@
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static String solution(int n) {
         StringBuilder result = new StringBuilder();
-        Map<Integer,String> map = new LinkedHashMap<>();
-        map.put(1000,"M");
-        map.put(900,"CM");
-        map.put(500,"D");
-        map.put(400,"CD");
-        map.put(100,"C");
-        map.put(90,"XC");
-        map.put(50,"L");
-        map.put(40,"XL");
-        map.put(10,"X");
-        map.put(9,"IX");
-        map.put(5,"V");
-        map.put(4,"IV");
-        map.put(1,"I");
+        List<Integer> numbers = new ArrayList<>();
+        List<String> roman = new ArrayList<>();
+        numbers.add(1000);
+        numbers.add(900);
+        numbers.add(500);
+        numbers.add(400);
+        numbers.add(100);
+        numbers.add(90);
+        numbers.add(50);
+        numbers.add(40);
+        numbers.add(10);
+        numbers.add(9);
+        numbers.add(5);
+        numbers.add(4);
+        numbers.add(1);
+        roman.add("M");
+        roman.add("CM");
+        roman.add("D");
+        roman.add("CD");
+        roman.add("C");
+        roman.add("XC");
+        roman.add("L");
+        roman.add("XL");
+        roman.add("X");
+        roman.add("IX");
+        roman.add("V");
+        roman.add("IV");
+        roman.add("I");
         while(n > 0){
-            int k = 0;
-            Iterator<Integer> intIter = map.keySet().iterator();
-            while(intIter.hasNext()){
-                int i = intIter.next();
-
-                if (i > n){
-                    intIter.remove();
+            for(int i = 0; i < numbers.size(); i++){
+                if (numbers.get(i) > n){
                     continue;
                 }
-                k = i;
+                result.append(roman.get(i));
+                n = n - numbers.get(i);
                 break;
             }
-            result.append(map.get(k));
-            n = n - k;
         }
         return result.toString();
     }
     public static void main(String[] args) {
-        System.out.println(solution(356));
+        System.out.println(solution(2340));
     }
 }
